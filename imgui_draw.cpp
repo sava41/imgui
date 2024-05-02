@@ -5974,23 +5974,36 @@ void ImGui::RenderArrow(ImDrawList* draw_list, ImVec2 pos, ImU32 col, ImGuiDir d
     case ImGuiDir_Up:
     case ImGuiDir_Down:
         if (dir == ImGuiDir_Up) r = -r;
-        a = ImVec2(+0.000f, +0.750f) * r;
-        b = ImVec2(-0.866f, -0.750f) * r;
-        c = ImVec2(+0.866f, -0.750f) * r;
+        a = ImVec2(+0.000f, +0.450f) * r;
+        b = ImVec2(-0.800f, -0.450f) * r;
+        c = ImVec2(+0.800f, -0.450f) * r;
         break;
     case ImGuiDir_Left:
     case ImGuiDir_Right:
         if (dir == ImGuiDir_Left) r = -r;
-        a = ImVec2(+0.750f, +0.000f) * r;
-        b = ImVec2(-0.750f, +0.866f) * r;
-        c = ImVec2(-0.750f, -0.866f) * r;
+        a = ImVec2(+0.450f, +0.000f) * r;
+        b = ImVec2(-0.450f, +0.800f) * r;
+        c = ImVec2(-0.450f, -0.800f) * r;
         break;
     case ImGuiDir_None:
     case ImGuiDir_COUNT:
         IM_ASSERT(0);
         break;
     }
-    draw_list->AddTriangleFilled(center + a, center + b, center + c, col);
+    //draw_list->AddTriangleFilled(center + a, center + b, center + c, col);
+
+    float thickness = ImMax(scale / 10.0f, 1.0f);
+    // sz -= thickness * 0.5f;
+    // pos += ImVec2(thickness * 0.25f, thickness * 0.25f);
+
+    //float third = sz / 3.0f;
+    //float bx = pos.x + third;
+    //float by = pos.y + sz - third * 0.5f;
+    draw_list->PathLineTo(ImVec2(center + a));
+    draw_list->PathLineTo(ImVec2(center + b));
+    draw_list->PathLineTo(ImVec2(center + c));
+    //draw_list->PathLineTo(ImVec2(bx + third * 2.0f, by - third * 2.0f));
+    draw_list->PathStroke(col, 0, thickness);
 }
 
 void ImGui::RenderBullet(ImDrawList* draw_list, ImVec2 pos, ImU32 col)
@@ -6002,7 +6015,7 @@ void ImGui::RenderBullet(ImDrawList* draw_list, ImVec2 pos, ImU32 col)
 
 void ImGui::RenderCheckMark(ImDrawList* draw_list, ImVec2 pos, ImU32 col, float sz)
 {
-    float thickness = ImMax(sz / 5.0f, 1.0f);
+    float thickness = ImMax(sz / 10.0f, 1.0f);
     sz -= thickness * 0.5f;
     pos += ImVec2(thickness * 0.25f, thickness * 0.25f);
 
