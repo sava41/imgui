@@ -5990,19 +5990,12 @@ void ImGui::RenderArrow(ImDrawList* draw_list, ImVec2 pos, ImU32 col, ImGuiDir d
         IM_ASSERT(0);
         break;
     }
-    //draw_list->AddTriangleFilled(center + a, center + b, center + c, col);
 
-    float thickness = ImMax(scale / 10.0f, 1.0f);
-    // sz -= thickness * 0.5f;
-    // pos += ImVec2(thickness * 0.25f, thickness * 0.25f);
+    float thickness = ImMax(scale / 2.0f, 2.0f);
 
-    //float third = sz / 3.0f;
-    //float bx = pos.x + third;
-    //float by = pos.y + sz - third * 0.5f;
+    draw_list->PathLineTo(ImVec2(center + c));
     draw_list->PathLineTo(ImVec2(center + a));
     draw_list->PathLineTo(ImVec2(center + b));
-    draw_list->PathLineTo(ImVec2(center + c));
-    //draw_list->PathLineTo(ImVec2(bx + third * 2.0f, by - third * 2.0f));
     draw_list->PathStroke(col, 0, thickness);
 }
 
@@ -6015,7 +6008,7 @@ void ImGui::RenderBullet(ImDrawList* draw_list, ImVec2 pos, ImU32 col)
 
 void ImGui::RenderCheckMark(ImDrawList* draw_list, ImVec2 pos, ImU32 col, float sz)
 {
-    float thickness = ImMax(sz / 10.0f, 1.0f);
+    float thickness = ImMax(sz / 8.0f, 1.0f);
     sz -= thickness * 0.5f;
     pos += ImVec2(thickness * 0.25f, thickness * 0.25f);
 
