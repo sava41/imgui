@@ -1967,6 +1967,7 @@ enum ImGuiMouseCursor_
     ImGuiMouseCursor_Wait,              // When waiting for something to process/load.
     ImGuiMouseCursor_Progress,          // When waiting for something to process/load, but application is still interactive.
     ImGuiMouseCursor_NotAllowed,        // When hovering something with disallowed interaction. Usually a crossed circle.
+    ImGuiMouseCursor_Crosshair,
     ImGuiMouseCursor_COUNT
 };
 
